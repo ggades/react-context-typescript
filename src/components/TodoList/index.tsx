@@ -1,9 +1,13 @@
 import React, { useContext } from 'react';
 import { TodosContext } from '../../context';
+import { Todo } from '../../types/todos';
 
-const TodoList = () => {
-  const { todos, removeTodo } = useContext(TodosContext);
+interface Props {
+  todos: Todo[];
+  removeTodo: Function
+}
 
+const TodoList = ({ todos, removeTodo }: Props) => {
   return (
     <>
       <h1>Todo list</h1>
@@ -18,4 +22,11 @@ const TodoList = () => {
   )
 }
 
-export default TodoList;
+// eslint-disable-next-line import/no-anonymous-default-export
+export default (props: Props) => (
+  <TodoList
+    {...useContext(TodosContext)}
+    {...props}
+  />
+);
+
