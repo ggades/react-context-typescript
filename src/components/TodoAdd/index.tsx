@@ -25,7 +25,6 @@ const TodoAdd = ({ addTodo }: Props) => {
   );
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default (props: Props) => (
   <TodoAdd
     {...useContext(TodosContext)}
