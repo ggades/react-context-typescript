@@ -7,4 +7,5 @@ export type TodosContextState = {
   todos: Todo[];
   addTodo: (newTodo: Todo) => void;
   removeTodo: (index: number) => void;
+  toggleTodo: (index: number) => void;
 };

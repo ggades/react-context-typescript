@@ -13,7 +13,8 @@ const contextDefaultValues: TodosContextState = {
     }
   ],
   addTodo: () => {},
-  removeTodo: () => {}
+  removeTodo: () => {},
+  toggleTodo: () => {}
 };
 
 export const TodosContext = createContext<TodosContextState>(
@@ -25,13 +26,20 @@ const TodosProvider: FC = ({ children }) => {
 
   const addTodo = (newTodo: Todo) => setTodos((todos) => [...todos, newTodo]);
   const removeTodo = (index: number) => setTodos((todos) => todos.filter((item, i) => i !== index));
+  const toggleTodo = (index: number) => setTodos(
+    (todos) => todos.map((item, i) => ({
+      text: item.text,
+      done: i === index ? !item.done : item.done
+    })
+  ));
 
   return (
     <TodosContext.Provider
       value={{
         todos,
         addTodo,
-        removeTodo
+        removeTodo,
+        toggleTodo
       }}
     >
       {children}
