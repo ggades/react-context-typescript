@@ -1,0 +1,21 @@
+@import '../../styles/mixins.scss';
+
+.todo-add {
+  @include todos-wrapper;
+  display: flex;
+  justify-content: space-between;
+  input[type=text] {
+    @include universal-border-radius;
+    border: 1px solid #CCCCCC;
+    width: 75%;
+    height: 30px;
+    padding: 5px 10px;
+    outline: none;
+  }
+  button {
+    @include universal-border-radius;
+    background: #535370;
+    color: #fff;
+    cursor: pointer;
+  }
+}

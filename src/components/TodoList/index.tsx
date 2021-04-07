@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { TodosContext } from '../../context';
 import { Todo } from '../../types/todos';
+import './index.scss';
 
 interface Props {
   todos: Todo[];
@@ -12,20 +13,21 @@ const TodoList = ({ todos, removeTodo, toggleTodo }: Props) => {
   return (
     <>
       <h1>Todos</h1>
-      <div>
-        {todos.map((todo, i) => (
-          <div key={i}>
-            <div>
+      <div className="todos-list">
+        <ul>
+          {todos.map((todo, i) => (
+            <li key={i}>
               <label htmlFor={`todo-${i}`}>
                 <input type="checkbox" id={`todo-${i}`} checked={todo.done} onChange={() => toggleTodo(i)}/>
-                <span>{todo.text} | </span>
+                <span className="text">{todo.text}</span>
               </label>
-              <button onClick={() => removeTodo(i)}>remove</button>
-            </div>
-          </div>
-        ))}
+              <button className="remove" onClick={() => removeTodo(i)} title="Remove item">remove</button>
+            </li>
+          ))}
+        </ul>
       </div>
-      <div>
+      <div className="todos-raw">
+        <div>Raw data:</div>
         <pre>{JSON.stringify(todos, null, 1)}</pre>
       </div>
     </>

@@ -1,5 +1,6 @@
 import React, { useContext, useState, FormEvent } from 'react';
 import { TodosContext } from '../../context';
+import './index.scss';
 
 interface Props {
   addTodo: Function
@@ -17,7 +18,7 @@ const TodoAdd = ({ addTodo }: Props) => {
   return (
     <>
       <h1>Todo add</h1>
-      <form onSubmit={e => submitNewTodo(e)}>
+      <form onSubmit={e => submitNewTodo(e)} className="todo-add">
         <input type="text" value={newTodo} onChange={e => setNewTodo(e.target.value)} />
         <button type="submit">add todo</button>
       </form>

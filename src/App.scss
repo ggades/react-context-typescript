@@ -1,0 +1,28 @@
+@import './styles/mixins.scss';
+
+.app {
+  text-align: center;
+  * {
+    box-sizing: border-box;
+  }
+  header {
+    background: #535370;
+    text-align: left;
+    a {
+      color: #fff;
+      padding: 15px;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 13px;
+      display: inline-block;
+      @include transition;
+      &:hover {
+        background-color:#626286;
+      }
+    }
+  }
+  h1 {
+    font-size: 30px;
+  }
+}
+

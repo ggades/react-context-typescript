@@ -1,0 +1,14 @@
+@mixin transition {
+  transition: all ease-in-out 300ms;
+}
+@mixin universal-border-radius {
+  border-radius: 5px;
+}
+@mixin todos-wrapper {
+  padding: 15px;
+  background: #FFF;
+  width: 400px;
+  border-radius: 5px;
+  margin: 10px auto;
+  text-align: left;
+}

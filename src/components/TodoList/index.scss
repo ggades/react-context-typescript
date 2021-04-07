@@ -1,0 +1,50 @@
+@import '../../styles/mixins.scss';
+
+.todos-list {
+  @include todos-wrapper;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      label {
+        width: 100%;
+        margin-right: 5px;
+        padding: 2px;
+        @include transition;
+        &:hover {
+          background-color: #eaeaff;
+          cursor: pointer;
+        }
+      }
+      .remove {
+        border: 0;
+        background-color: #ff00008a;
+        color: #fff;
+        outline: none;
+        font-size: 11px;
+        cursor: pointer;
+        @include universal-border-radius;
+        &:hover {
+          background-color: red;
+        }
+      }
+    }
+  }
+}
+
+.todos-raw {
+  @include todos-wrapper;
+  pre {
+    padding: 15px;
+    background-color: #eaeaff;
+    border-radius: 5px;
+    margin-bottom: 0;
+  }
+}
