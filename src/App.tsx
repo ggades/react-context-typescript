@@ -1,13 +1,13 @@
 import React from 'react';
 import Routes from './routes';
-import TodosProvider from './context';
+import StoreProvider from './store';
 import './App.scss';
 
 const App = () => (
   <div className="app">
-    <TodosProvider>
+    <StoreProvider>
       <Routes />
-    </TodosProvider>    
+    </StoreProvider>    
   </div>
 );
 

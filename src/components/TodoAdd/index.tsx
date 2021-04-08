@@ -1,5 +1,5 @@
 import React, { useContext, useState, FormEvent } from 'react';
-import { TodosContext } from '../../context';
+import { AppContext } from '../../store';
 import './index.scss';
 
 interface Props {
@@ -28,7 +28,7 @@ const TodoAdd = ({ addTodo }: Props) => {
 
 export default (props: Props) => (
   <TodoAdd
-    {...useContext(TodosContext)}
+    {...useContext(AppContext)}
     {...props}
   />
 )

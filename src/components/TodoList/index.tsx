@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { TodosContext } from '../../context';
+import { AppContext } from '../../store';
 import { Todo } from '../../types/todos';
 import './index.scss';
 
@@ -36,7 +36,7 @@ const TodoList = ({ todos, removeTodo, toggleTodo }: Props) => {
 
 export default (props: Props) => (
   <TodoList
-    {...useContext(TodosContext)}
+    {...useContext(AppContext)}
     {...props}
   />
 );
