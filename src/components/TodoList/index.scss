@@ -37,6 +37,17 @@
       }
     }
   }
+  .empty {
+    text-align: center;
+    margin: 10px 0;
+  }
+}
+
+.all-done {
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 15px;
+  text-align: center;
 }
 
 .todos-raw {

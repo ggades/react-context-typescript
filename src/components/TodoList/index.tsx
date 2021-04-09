@@ -1,19 +1,30 @@
-import React, { useContext } from 'react';
+import React, { useContext, ReactElement } from 'react';
 import { AppContext } from '../../store';
-import { Todo } from '../../types/todos';
+import { Todo, CompletedTodo } from '../../types/todos';
 import './index.scss';
 
 interface Props {
   todos: Todo[];
   removeTodo: Function,
-  toggleTodo: Function
+  toggleTodo: Function,
+  completeAllTodos: Function
 }
 
-const TodoList = ({ todos, removeTodo, toggleTodo }: Props) => {
-  return (
-    <>
-      <h1>Todos</h1>
-      <div className="todos-list">
+const TodoList = ({ todos, removeTodo, toggleTodo, completeAllTodos }: Props) => {
+
+  const commpleteAll = () => {
+    const allTodosCompleted = todos.map((todo: Todo): CompletedTodo => ({
+      ...todo,
+      done: true
+    }));
+    completeAllTodos(allTodosCompleted);
+  };
+
+  const renderTodos = (): ReactElement => {
+    if (!todos.length) return <div className="empty">There are no todos anymore :)</div>
+
+    return (
+      <>
         <ul>
           {todos.map((todo, i) => (
             <li key={i}>
@@ -25,7 +36,20 @@ const TodoList = ({ todos, removeTodo, toggleTodo }: Props) => {
             </li>
           ))}
         </ul>
-      </div>
+        <div
+          onClick={commpleteAll}
+          role="button"
+          className="all-done"
+          title="Mark all as completed">Mark all as completed
+        </div>
+      </>
+    )
+  }
+
+  return (
+    <>
+      <h1>Todos</h1>
+      <div className="todos-list">{renderTodos()}</div>
       <div className="todos-raw">
         <div>Raw data:</div>
         <pre>{JSON.stringify(todos, null, 1)}</pre>
