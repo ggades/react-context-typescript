@@ -37,7 +37,7 @@ const TodoList = ({ todos, removeTodo, toggleTodo, setTodos, fetchTodos }: Props
                 <input type="checkbox" id={`todo-${i}`} checked={todo.done} onChange={() => toggleTodo(i)}/>
                 <span className="text">{todo.text}</span>
               </label>
-              <button className="remove" onClick={() => removeTodo(i)} title="Remove item">remove</button>
+              <button className="remove" onClick={() => removeTodo(todo.id)} title="Remove item">remove</button>
             </li>
           ))}
         </ul>

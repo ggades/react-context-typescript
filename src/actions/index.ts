@@ -10,8 +10,6 @@ export const setTodo = (todo: Todo) => (dispatch: Function) => dispatch({ type: 
 
 export const setTodos = <T>(todos: T) => (dispatch: Function) => dispatch({ type: SET_TODOS, todos });
 
-export const removeTodo = (index: number) => (dispatch: Function) => dispatch({ type: REMOVE_TODO, index });
-
 export const toggleTodo = (index: number) => (dispatch: Function) => dispatch({ type: TOGGLE_TODO, index });
 
 // async function request<TResponse>(
@@ -29,13 +27,32 @@ export const fetchTodos = () => async (dispatch: Function) => {
 };
 
 export const addTodo = (todo: Todo) => async (dispatch: Function) => {
-  const response = await fetch(`${API}/todos`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(todo)
-  }).then(res => res.json());
+  try {
+    const response = await fetch(`${API}/todos`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(todo)
+    }).then(res => res.json());
 
-  setTodo(response)(dispatch);
+    setTodo(response)(dispatch);
+  } catch (e) {
+    console.error('Error while tring to create new TODO', e);
+  }
+};
+
+export const removeTodo = (id: string) => async (dispatch: Function) => {
+  try { 
+    const response = await fetch(`${API}/todos/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(res => res.json());
+  
+    if (response.id) dispatch({ type: REMOVE_TODO, id });
+  } catch (e) {
+    console.error('Error while tring to delete TODO', e);
+  }
 };

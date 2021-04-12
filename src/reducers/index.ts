@@ -22,7 +22,7 @@ export default (state: TodosContextState, action: TodosAction) => {
     case REMOVE_TODO:
       return {
         ...state,
-        todos: state.todos.filter((item, i) => i !== action.index)
+        todos: state.todos.filter((item) => item.id !== action.id)
       };
     
     case TOGGLE_TODO:

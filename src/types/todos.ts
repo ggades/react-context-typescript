@@ -11,7 +11,7 @@ export type CompletedTodo = Todo & {
 export type TodosAction =
   | { type: 'SET_TODO'; todo: Todo }
   | { type: 'SET_TODOS'; todos: Todo[] }
-  | { type: 'REMOVE_TODO'; index: number }
+  | { type: 'REMOVE_TODO'; id: string }
   | { type: 'TOGGLE_TODO'; index: number }
 
 export type TodosContextState = {
