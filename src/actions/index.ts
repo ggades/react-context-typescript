@@ -6,7 +6,7 @@ export const SET_TODOS = 'SET_TODOS';
 export const REMOVE_TODO = 'REMOVE_TODO';
 export const TOGGLE_TODO = 'TOGGLE_TODO';
 
-export const addTodo = (todo: Todo) => (dispatch: Function) => dispatch({ type: SET_TODO, todo });
+export const setTodo = (todo: Todo) => (dispatch: Function) => dispatch({ type: SET_TODO, todo });
 
 export const setTodos = <T>(todos: T) => (dispatch: Function) => dispatch({ type: SET_TODOS, todos });
 
@@ -26,4 +26,16 @@ export const toggleTodo = (index: number) => (dispatch: Function) => dispatch({ 
 export const fetchTodos = () => async (dispatch: Function) => {
   const response = await fetch(`${API}/todos`).then(res => res.json());
   setTodos(response)(dispatch);
+};
+
+export const addTodo = (todo: Todo) => async (dispatch: Function) => {
+  const response = await fetch(`${API}/todos`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(todo)
+  }).then(res => res.json());
+
+  setTodo(response)(dispatch);
 };
