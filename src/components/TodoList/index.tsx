@@ -1,4 +1,4 @@
-import React, { useContext, ReactElement } from 'react';
+import React, { useContext, ReactElement, useEffect } from 'react';
 import { AppContext } from '../../store';
 import { Todo, CompletedTodo } from '../../types/todos';
 import './index.scss';
@@ -7,10 +7,14 @@ interface Props {
   todos: Todo[];
   removeTodo: Function,
   toggleTodo: Function,
-  completeAllTodos: Function
+  completeAllTodos: Function,
+  fetchTodos: Function
 }
 
-const TodoList = ({ todos, removeTodo, toggleTodo, completeAllTodos }: Props) => {
+const TodoList = ({ todos, removeTodo, toggleTodo, completeAllTodos, fetchTodos }: Props) => {
+  useEffect(() => {
+    if (!todos.length) fetchTodos();
+  }, []);
 
   const commpleteAll = () => {
     const allTodosCompleted = todos.map((todo: Todo): CompletedTodo => ({

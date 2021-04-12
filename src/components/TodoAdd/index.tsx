@@ -1,4 +1,5 @@
 import React, { useContext, useState, FormEvent } from 'react';
+import { Todo } from '../../types/todos';
 import { AppContext } from '../../store';
 import './index.scss';
 
@@ -11,7 +12,12 @@ const TodoAdd = ({ addTodo }: Props) => {
 
   const submitNewTodo = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    addTodo({ text: newTodo, done: false })
+    const todo: Todo = {
+      id: Math.random().toString(36).substr(2, 9),
+      text: newTodo,
+      done: false
+    }
+    addTodo(todo)
     setNewTodo('')
   };
 

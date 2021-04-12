@@ -1,21 +1,8 @@
-import { SET_TODO, REMOVE_TODO, TOGGLE_TODO, COMPLETE_ALL_TODOS } from '../actions';
+import { SET_TODO, SET_TODOS, REMOVE_TODO, TOGGLE_TODO, COMPLETE_ALL_TODOS } from '../actions';
 import { TodosAction, TodosContextState } from '../types/todos';
 
 export const initialState: TodosContextState = {
-  todos: [
-    {
-      text: 'Drink coffee ☕',
-      done: true
-    },
-    {
-      text: 'Drink more coffee ☕',
-      done: false
-    },
-    {
-      text: 'Drink even more coffee ☕',
-      done: false
-    }
-  ]
+  todos: []
 };
 
 export default (state: TodosContextState, action: TodosAction) => {
@@ -24,6 +11,12 @@ export default (state: TodosContextState, action: TodosAction) => {
       return {
         ...state,
         todos: [...state.todos, action.todo]
+      };
+    
+    case SET_TODOS:
+      return {
+        ...state,
+        todos: [...action.todos]
       };
     
     case REMOVE_TODO:
@@ -36,7 +29,7 @@ export default (state: TodosContextState, action: TodosAction) => {
       return {
         ...state,
         todos: state.todos.map((item, i) => ({
-          text: item.text,
+          ...item,
           done: i === action.index ? !item.done : item.done
         }))
       };
