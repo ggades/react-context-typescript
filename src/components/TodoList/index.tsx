@@ -1,27 +1,28 @@
 import React, { useContext, ReactElement, useEffect } from 'react';
+import { setTodos, fetchTodos, toggleTodo, removeTodo } from '../../actions';
 import { AppContext } from '../../store';
 import { Todo, CompletedTodo } from '../../types/todos';
 import './index.scss';
 
 interface Props {
   todos: Todo[];
-  removeTodo: Function,
-  toggleTodo: Function,
-  completeAllTodos: Function,
-  fetchTodos: Function
+  removeTodo: typeof removeTodo,
+  toggleTodo: typeof toggleTodo,
+  setTodos: typeof setTodos,
+  fetchTodos: typeof fetchTodos
 }
 
-const TodoList = ({ todos, removeTodo, toggleTodo, completeAllTodos, fetchTodos }: Props) => {
+const TodoList = ({ todos, removeTodo, toggleTodo, setTodos, fetchTodos }: Props) => {
   useEffect(() => {
     if (!todos.length) fetchTodos();
-  }, []);
+  }, [todos, fetchTodos]);
 
   const commpleteAll = () => {
-    const allTodosCompleted = todos.map((todo: Todo): CompletedTodo => ({
+    const allTodosCompleted = todos.map((todo): CompletedTodo => ({
       ...todo,
       done: true
     }));
-    completeAllTodos(allTodosCompleted);
+    setTodos<CompletedTodo[]>(allTodosCompleted);
   };
 
   const renderTodos = (): ReactElement => {

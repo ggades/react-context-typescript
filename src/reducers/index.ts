@@ -1,4 +1,4 @@
-import { SET_TODO, SET_TODOS, REMOVE_TODO, TOGGLE_TODO, COMPLETE_ALL_TODOS } from '../actions';
+import { SET_TODO, SET_TODOS, REMOVE_TODO, TOGGLE_TODO } from '../actions';
 import { TodosAction, TodosContextState } from '../types/todos';
 
 export const initialState: TodosContextState = {
@@ -32,12 +32,6 @@ export default (state: TodosContextState, action: TodosAction) => {
           ...item,
           done: i === action.index ? !item.done : item.done
         }))
-      };
-    
-    case COMPLETE_ALL_TODOS:
-      return {
-        ...state,
-        todos: action.todos
       };
 
     default:
