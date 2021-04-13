@@ -40,11 +40,17 @@ const TodoList = ({
 
     return (
       <>
-        <ul>
+        <ul data-testid="qaTodoList">
           {todos.map((todo, i) => (
             <li key={i}>
-              <label htmlFor={`todo-${i}`}>
-                <input type="checkbox" id={`todo-${i}`} checked={todo.done} onChange={() => toggleTodo(i)}/>
+              <label htmlFor={`todo-${i}`} data-testid="qaTodoLabel">
+                <input
+                  type="checkbox"
+                  id={`todo-${i}`}
+                  checked={todo.done}
+                  aria-checked={todo.done}
+                  onChange={() => toggleTodo(i)}
+                />
                 <span className="text">{todo.text}</span>
               </label>
               <button className="remove" onClick={() => removeTodo(todo.id)} title="Remove item">remove</button>
