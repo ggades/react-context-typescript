@@ -22,4 +22,5 @@ export type TodosAction =
 
 export type TodosContextState = {
   todos: Todo[];
+  loading: boolean; 
 };

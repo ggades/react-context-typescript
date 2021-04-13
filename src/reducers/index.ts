@@ -2,7 +2,8 @@ import { SET_TODO, SET_TODOS, REMOVE_TODO, TOGGLE_TODO } from '../actions';
 import { TodosAction, TodosContextState } from '../types/todos';
 
 export const initialState: TodosContextState = {
-  todos: []
+  todos: [],
+  loading: true
 };
 
 export default (state: TodosContextState, action: TodosAction) => {
@@ -16,7 +17,8 @@ export default (state: TodosContextState, action: TodosAction) => {
     case SET_TODOS:
       return {
         ...state,
-        todos: [...action.todos]
+        todos: [...action.todos],
+        loading: false
       };
     
     case REMOVE_TODO:

@@ -6,13 +6,21 @@ import './index.scss';
 
 interface Props {
   todos: Todo[];
+  loading: boolean,
   removeTodo: typeof removeTodo,
   toggleTodo: typeof toggleTodo,
   setTodos: typeof setTodos,
   fetchTodos: typeof fetchTodos
 }
 
-const TodoList = ({ todos, removeTodo, toggleTodo, setTodos, fetchTodos }: Props) => {
+const TodoList = ({
+  todos,
+  loading,
+  removeTodo,
+  toggleTodo,
+  setTodos,
+  fetchTodos
+}: Props) => {
   useEffect(() => {
     if (!todos.length) fetchTodos();
   }, [todos, fetchTodos]);
@@ -26,7 +34,9 @@ const TodoList = ({ todos, removeTodo, toggleTodo, setTodos, fetchTodos }: Props
   };
 
   const renderTodos = (): ReactElement => {
-    if (!todos.length) return <div className="empty">There are no todos anymore :)</div>
+    if (!todos.length) return <div className="empty">
+      {loading ? 'Loading...' : 'There are no todos anymore :)'}
+    </div>
 
     return (
       <>
