@@ -38,7 +38,7 @@ export const addTodo = (todo: Todo) => async (dispatch: Function) => {
 
     setTodo(response)(dispatch);
   } catch (e) {
-    console.error('Error while tring to create new TODO', e);
+    console.error('Error while trying to create new TODO', e);
   }
 };
 
@@ -53,6 +53,6 @@ export const removeTodo = (id: string) => async (dispatch: Function) => {
   
     if (response.id) dispatch({ type: REMOVE_TODO, id });
   } catch (e) {
-    console.error('Error while tring to delete TODO', e);
+    console.error('Error while trying to delete TODO', e);
   }
 };
