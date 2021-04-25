@@ -1,5 +1,5 @@
 import React, { useContext, ReactElement, useEffect } from 'react';
-import { setTodos, fetchTodos, toggleTodo, removeTodo } from '../../actions';
+import { setTodos, fetchTodos, updateTodo, removeTodo } from '../../actions';
 import { AppContext } from '../../store';
 import { Todo, CompletedTodo } from '../../types/todos';
 import './index.scss';
@@ -8,7 +8,7 @@ interface Props {
   todos: Todo[];
   loading: boolean,
   removeTodo: typeof removeTodo,
-  toggleTodo: typeof toggleTodo,
+  updateTodo: typeof updateTodo,
   setTodos: typeof setTodos,
   fetchTodos: typeof fetchTodos
 }
@@ -17,7 +17,7 @@ const TodoList = ({
   todos,
   loading,
   removeTodo,
-  toggleTodo,
+  updateTodo,
   setTodos,
   fetchTodos
 }: Props) => {
@@ -49,7 +49,7 @@ const TodoList = ({
                   id={`todo-${i}`}
                   checked={todo.done}
                   aria-checked={todo.done}
-                  onChange={() => toggleTodo(i)}
+                  onChange={() => updateTodo(todo, i)}
                 />
                 <span className="text">{todo.text}</span>
               </label>
