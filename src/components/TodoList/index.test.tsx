@@ -15,27 +15,34 @@ const props = {
   fetchTodos: jest.fn()
 };
 
-test('renders <TodoList /> with mocked data', async () => {
-  render(<TodoList {...props} />);
-  
+const setup = () => {
+  const utils = render(<TodoList {...props} />);
   const todosList = screen.getByTestId('qaTodoList');
+  const label = screen.getByTestId('qaTodoLabel');
+  const removeButton = screen.getByText('remove');
+  return {
+    todosList,
+    label,
+    removeButton,
+    ...utils,
+  }
+}
+
+test('renders <TodoList /> with mocked data', async () => {
+  const { todosList } = setup();
   expect(todosList).toBeInTheDocument();
 });
 
-test('mark a todo as done', async () => { 
-  render(<TodoList {...props} />);
-
-  const label = screen.getByTestId('qaTodoLabel');
+test('mark a todo as done', () => { 
+  const { label } = setup();
   fireEvent.click(label);
 
   expect(props.updateTodo).toHaveBeenCalled();
 });
 
-test('remove todo', async () => { 
-  render(<TodoList {...props} />);
-
-  fireEvent.click(screen.getByText('remove'));
-
+test('remove todo', () => {
+  const { removeButton } = setup();
+  fireEvent.click(removeButton);
   expect(props.removeTodo).toHaveBeenCalled();
 });
 
