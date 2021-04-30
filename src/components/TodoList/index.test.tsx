@@ -10,7 +10,7 @@ const props = {
     done: false
   }],
   removeTodo: jest.fn(),
-  toggleTodo: jest.fn(),
+  updateTodo: jest.fn(),
   setTodos: jest.fn(),
   fetchTodos: jest.fn()
 };
@@ -28,7 +28,7 @@ test('mark a todo as done', async () => {
   const label = screen.getByTestId('qaTodoLabel');
   fireEvent.click(label);
 
-  expect(props.toggleTodo).toHaveBeenCalled();
+  expect(props.updateTodo).toHaveBeenCalled();
 });
 
 test('remove todo', async () => { 

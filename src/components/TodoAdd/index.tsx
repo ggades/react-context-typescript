@@ -12,6 +12,8 @@ const TodoAdd = ({ addTodo }: Props) => {
 
   const submitNewTodo = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if(newTodo === '') return
+
     const todo: NewTodo = {
       text: newTodo,
       done: false
@@ -23,8 +25,8 @@ const TodoAdd = ({ addTodo }: Props) => {
   return (
     <>
       <h1>Todo add</h1>
-      <form onSubmit={e => submitNewTodo(e)} className="todo-add">
-        <input type="text" value={newTodo} onChange={e => setNewTodo(e.target.value)} />
+      <form onSubmit={e => submitNewTodo(e)} className="todo-add" data-testid="qaAddTodoForm">
+        <input type="text" value={newTodo} data-testid="qaAddTodoInput" required onChange={e => setNewTodo(e.target.value)} />
         <button type="submit">add todo</button>
       </form>
     </>
